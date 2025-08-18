@@ -5,6 +5,12 @@ ChessBoard::ChessBoard()
 	create();
 }
 
+ChessBoard::~ChessBoard()
+{
+	for (auto p : pieces)
+		delete p;
+}
+
 void ChessBoard::create()
 {
 	for (int i = 0; i < SIZE; i++)
@@ -29,4 +35,23 @@ void ChessBoard::print()
 		std::cout << " " << 8 - i << "\n";
 	}
 	std::cout << "   a b c d e f g h\n";
+}
+
+void ChessBoard::addPiece(Piece *piece)
+{
+	pieces.push_back(piece);
+	board[piece->getRow()][piece->getCol()] = piece->getSymblo();
+}
+
+bool ChessBoard::movePiece(Piece *piece, int newRow, int newCol)
+{
+	if (piece->canMove(newRow, newCol))
+	{
+		board[piece->getRow()][piece->getCol()] = '.';
+		piece->setPosition(newRow, newCol);
+		board[newRow][newCol] = piece->getSymblo();
+		return true;
+	}
+
+	return false;
 }

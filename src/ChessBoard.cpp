@@ -43,9 +43,9 @@ void ChessBoard::addPiece(Piece *piece)
 	board[piece->getRow()][piece->getCol()] = piece->getSymblo();
 }
 
-bool ChessBoard::movePiece(Piece *piece, int newRow, int newCol)
+bool ChessBoard::movePiece(Piece *piece, int newRow, int newCol, bool hasPiece)
 {
-	if (piece->canMove(newRow, newCol))
+	if (piece->canMove(newRow, newCol, hasPiece))
 	{
 		board[piece->getRow()][piece->getCol()] = '.';
 		piece->setPosition(newRow, newCol);
@@ -54,4 +54,9 @@ bool ChessBoard::movePiece(Piece *piece, int newRow, int newCol)
 	}
 
 	return false;
+}
+
+bool ChessBoard::isEmpty(int row, int col)
+{
+	return board[row][col] == '.';
 }

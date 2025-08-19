@@ -1,24 +1,89 @@
+#include <cstdlib>
+#include <cctype>
+
 #include "ChessBoard.h"
 #include "Knight.h"
+#include "Rook.h"
 
 int main()
 {
 	ChessBoard board;
 
-	Knight *knight = new Knight(7, 1);
-	board.addPiece(knight);
+	Knight *Lknight = new Knight(7, 1);
+	board.addPiece(Lknight);
 
-	board.print();
+	Rook *Lrook = new Rook(7, 0);
+	board.addPiece(Lrook);
 
-	// std::cout << "\nTentando mover cavalo para (5,2)...\n";
-	// if (board.movePiece(knight, 5, 2))
-	// {
-	// 	board.print();
-	// }
-	// else
-	// {
-	// 	std::cout << "Movimento inválido!\n";
-	// }
+	Knight *Rknight = new Knight(7, 6);
+	board.addPiece(Rknight);
 
+	Rook *Rrook = new Rook(7, 7);
+	board.addPiece(Rrook);
+
+	int option = 0;
+
+	while (option != 3)
+	{
+		std::cout << "\n=== MENU XADREZ ===\n";
+		std::cout << "1. Mostrar tabuleiro\n";
+		std::cout << "2. Mover peca\n";
+		std::cout << "3. Sair\n";
+		std::cout << "Escolha uma opcao: ";
+		std::cin >> option;
+
+		if (option == 1)
+		{
+			board.print();
+		}
+		else if (option == 2)
+		{
+			int pieceType, newRow;
+			char colChar;
+
+			std::cout << "Escolha a peca (1 = Cavalo, 2 = Torre): ";
+			std::cin >> pieceType;
+
+			std::cout << "Nova linha (1-8): ";
+			std::cin >> newRow;
+			newRow = 8 - newRow;
+
+			std::cout << "Nova coluna (a-h): ";
+			std::cin >> colChar;
+			colChar = toupper(colChar);
+			int newCol = colChar - 'A';
+
+			bool isEmpty = board.isEmpty(newRow, newCol);
+
+			if (pieceType == 1)
+			{
+				if (board.movePiece(Lknight, newRow, newCol, isEmpty))
+					board.print();
+				else
+					std::cout << "Movimento invalido!\n";
+			}
+			else if (pieceType == 2)
+			{
+				if (board.movePiece(Lrook, newRow, newCol, isEmpty))
+					board.print();
+				else
+					std::cout << "Movimento invalido!\n";
+			}
+			else
+			{
+				std::cout << "Peca inválida!\n";
+			}
+		}
+		else if (option == 3)
+		{
+			std::cout << "Saindo do jogo...\n";
+		}
+		else
+		{
+			std::cout << "Opcao invalida!\n";
+		}
+	}
+
+	std::cin.get();
 	return 0;
 }

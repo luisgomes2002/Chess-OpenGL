@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include <string>
+#include <iostream>
 
 class Piece
 {
@@ -23,7 +23,7 @@ public:
 		col = c;
 	}
 
-	virtual bool canMove(int newRow, int newCol) = 0;
+	virtual bool canMove(int newRow, int newCol, bool isEmpty) = 0;
 };
 
 #endif

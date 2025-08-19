@@ -10,8 +10,8 @@ class ChessBoard
 
 private:
 	static const int SIZE = 8;
-	char board[SIZE][SIZE];
 	std::vector<Piece *> pieces;
+	char board[SIZE][SIZE];
 
 	void create();
 
@@ -21,7 +21,8 @@ public:
 
 	void print();
 	void addPiece(Piece *piece);
-	bool movePiece(Piece *piece, int newRow, int newCol);
+	bool movePiece(Piece *piece, int newRow, int newCol, bool hasPiece);
+	bool isEmpty(int row, int col);
 };
 
 #endif

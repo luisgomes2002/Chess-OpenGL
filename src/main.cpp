@@ -4,6 +4,7 @@
 #include "ChessBoard.h"
 #include "Knight.h"
 #include "Rook.h"
+#include "Pawn.h"
 
 int main()
 {
@@ -20,6 +21,23 @@ int main()
 
 	Rook *Rrook = new Rook(7, 7);
 	board.addPiece(Rrook);
+
+	Pawn *pawn1 = new Pawn(6, 0);
+	board.addPiece(pawn1);
+	Pawn *pawn2 = new Pawn(6, 1);
+	board.addPiece(pawn2);
+	Pawn *pawn3 = new Pawn(6, 2);
+	board.addPiece(pawn3);
+	Pawn *pawn4 = new Pawn(6, 3);
+	board.addPiece(pawn4);
+	Pawn *pawn5 = new Pawn(6, 4);
+	board.addPiece(pawn5);
+	Pawn *pawn6 = new Pawn(6, 5);
+	board.addPiece(pawn6);
+	Pawn *pawn7 = new Pawn(6, 6);
+	board.addPiece(pawn7);
+	Pawn *pawn8 = new Pawn(6, 7);
+	board.addPiece(pawn8);
 
 	int option = 0;
 
